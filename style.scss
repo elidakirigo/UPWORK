@@ -1,5 +1,10 @@
+@function rem($size) {
+    @return $size / 16px * 1rem;
+}
+
 :root {
     --text_default_color: white;
+    --background: #ccc;
 }
 
 *,
@@ -8,4 +13,41 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box
+}
+
+body {
+    background: var(--background);
+    font-family: 'Courier New', Courier, monospace;
+    padding: rem(48px);
+}
+
+#v0 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+}
+
+#set-height {
+    display: block;
+}
+
+.container {
+    z-index: 1;
+    position: relative;
+
+    .content {
+        position: sticky;
+        width: 100%;
+        top: 33.3%;
+    }
+
+    h1 {
+        font-size: rem(48px);
+        background: #fff;
+        display: inline-block;
+        padding: rem(10px) rem(15px);
+        border-radius: rem(5px);
+        margin: 0
+    }
 }
