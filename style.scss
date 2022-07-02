@@ -25,11 +25,26 @@ body {
     position: fixed;
     bottom: 0;
     right: 0;
-    width: 100%;
+    width: 60%;
 }
 
 #set-height {
     display: block;
+}
+
+/* animation css */
+.entered {
+    animation: text-focus-in 1s cubic-bezier(0.550, 0.085, 0.500, 0.530) both;
+}
+
+@keyframes text-focus-in {
+    0% {
+        filter: blur(rem(12px));
+    }
+
+    100% {
+        filter: blur(0);
+    }
 }
 
 .container {
@@ -49,5 +64,29 @@ body {
         padding: rem(10px) rem(15px);
         border-radius: rem(5px);
         margin: 0
+    }
+
+    p {
+        font-size: rem(24px);
+    }
+
+    &:nth-of-type(1) {
+        height: rem(1200px);
+    }
+
+    &:nth-of-type(2) {
+        height: rem(1200px);
+    }
+
+    &:nth-of-type(3) {
+        height: rem(1200px);
+    }
+
+    &:nth-of-type(4) {
+        height: rem(1000px);
+    }
+
+    &:nth-of-type(5) {
+        height: rem(400px);
     }
 }
