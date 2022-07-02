@@ -7,14 +7,11 @@ let frameNumber = 0, // start video at frame 0
     video4 = document.getElementById('v4'),
     video5 = document.getElementById('v5'),
     video_duration, segments,
-    setHeight = document.querySelector('.set-height'),
-    // select video element
-    first_scroll_height = document.querySelector('#card-1').scrollHeight,
-    second_scroll_height = document.querySelector('#card-2').scrollHeight,
-    third_scroll_height = document.querySelector('#card-3').scrollHeight,
-    fourth_scroll_height = document.querySelector('#card-4').scrollHeight;
-
-video1.addEventListener('loadeddata', videoDuration);
+    setHeight = document.querySelector('.set-height');
+    
+window.onload = ()=>{
+    video1.addEventListener('loadeddata', videoDuration);
+}
 
 function videoDuration() {
     video1.currentTime = video1.duration;
@@ -25,9 +22,9 @@ function Video(video) {
     this.static = () => {
         video.addEventListener('loadedmetadata', this.HeightTweaks);
         window.requestAnimationFrame(this.scrollPlay)
-        frameNumber = window.pageYOffset /62;
+        frameNumber = window.pageYOffset / 62;
         // console.log(frameNumber);
-        console.log(video.duration-frameNumber,window.pageYOffset);
+        console.log(video.duration - frameNumber, window.pageYOffset);
     }
 
     this.changeToRem = () => {
@@ -52,28 +49,11 @@ function Video(video) {
 
 // dynamically set the page height accoding to video length
 function scrollW() {
-    let vid;
-    console.log("in");
-    if (window.pageYOffset < first_scroll_height / 2) {
-        console.log("int");
-        vid = new Video(video1);
-        vid.static()
-    }
-    if (window.pageYOffset > first_scroll_height / 2) {
-        vid = new Video(video2)
-        vid.static()
-    }
-    if (window.pageYOffset > second_scroll_height / 2) {
-        vid = new Video(video3)
-        vid.static()
-    }
-    if (window.pageYOffset > third_scroll_height / 2) {
-        vid = new Video(video4)
-        vid.static()
-    }
-    if (window.pageYOffset > fourth_scroll_height / 2) {
-        vid = new Video(video5)
-        vid.static()
+    let vid = [video1, video2, video3, video4, video5]
+    for (let i = 0; i < vid.length; i++) {
+        let element = new Video(vid[i]);
+        element.static()
+
     }
 }
 
