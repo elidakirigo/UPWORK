@@ -1,11 +1,11 @@
 let frameNumber = 0, // start video at frame 0
     // lower numbers = faster playback
-    playBackConst = 35,
     // get page height from video duration 
     video1 = document.getElementById('v1'),
     video2 = document.getElementById('v2'),
     video3 = document.getElementById('v3'),
     video4 = document.getElementById('v4'),
+    video5 = document.getElementById('v5'),
     video_duration, segments,
     setHeight = document.querySelector('.set-height'),
     // select video element
@@ -14,26 +14,32 @@ let frameNumber = 0, // start video at frame 0
     third_scroll_height = document.querySelector('#card-3').scrollHeight,
     fourth_scroll_height = document.querySelector('#card-4').scrollHeight;
 
+video1.addEventListener('loadeddata', videoDuration);
+
+function videoDuration() {
+    video1.currentTime = video1.duration;
+}
+
 function Video(video) {
 
     this.static = () => {
         video.addEventListener('loadedmetadata', this.HeightTweaks);
-        video.addEventListener('loadeddata', this.videoDuration);
         window.requestAnimationFrame(this.scrollPlay)
-        // console.log(video);
+        frameNumber = window.pageYOffset /62;
+        // console.log(frameNumber);
+        console.log(video.duration-frameNumber,window.pageYOffset);
     }
-    this.videoDuration = () => {
-        video_duration = video.duration;
-    }
+
     this.changeToRem = () => {
         let ValueInPX = Math.floor(video.duration) * playBackConst;
         // this value is in px , and being returned to Rem, 1rem = 16px
         return `${ValueInPX / 16}rem`
     }
     this.scrollPlay = () => {
-        let frameNumber = window.pageYOffset / playBackConst;
+        let duration = video.duration,
+            frameNumber = window.pageYOffset / 62;
         // console.log(frameNumber);
-        video.currentTime = frameNumber;
+        video.currentTime = duration - frameNumber;
         window.requestAnimationFrame(this.scrollPlay)
     }
     this.HeightTweaks = (ValueInRem) => {
@@ -47,7 +53,9 @@ function Video(video) {
 // dynamically set the page height accoding to video length
 function scrollW() {
     let vid;
-    if (window.pageYOffset == 0) {
+    console.log("in");
+    if (window.pageYOffset < first_scroll_height / 2) {
+        console.log("int");
         vid = new Video(video1);
         vid.static()
     }
@@ -61,6 +69,10 @@ function scrollW() {
     }
     if (window.pageYOffset > third_scroll_height / 2) {
         vid = new Video(video4)
+        vid.static()
+    }
+    if (window.pageYOffset > fourth_scroll_height / 2) {
+        vid = new Video(video5)
         vid.static()
     }
 }
