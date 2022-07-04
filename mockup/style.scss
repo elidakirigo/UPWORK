@@ -50,12 +50,13 @@ main {
         video {
             width: 100%;
             box-shadow: 2px 2px 22px 2px rgba(0, 0, 0, 0.329);
-            // position:fixed;
         }
     }
-.set-height{
-    display: block;
-}
+
+    .set-height {
+        display: block;
+    }
+
     &:nth-child(2),
     &:nth-child(4) {
         flex-direction: row-reverse;
