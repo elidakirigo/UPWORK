@@ -18,7 +18,7 @@ class Video {
             if (video.getBoundingClientRect().bottom < document.documentElement.clientHeight && video.getBoundingClientRect().bottom > 0) {
                 let frameNumber;
                 if (video == video1) {
-                    frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().bottom) / 7.5;
+                    frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().bottom) / 6;
                 } else if (video == video5) {
                     frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().top) / 1.4;
                     // console.log(frameNumber);/
