@@ -1,9 +1,8 @@
 class Video {
     constructor(video) {
         this.static = () => {
-            video.addEventListener('loadedmetadata', this.HeightTweaks);
+            // video.addEventListener('loadedmetadata', this.HeightTweaks);
             window.requestAnimationFrame(this.scrollPlay);
-            console.log(video.currentTime, video, (document.documentElement.clientHeight - video.getBoundingClientRect().bottom) / 8);
         };
         // this value is in px , and being returned to Rem, 1rem = 16px
         this.changeToRem = (ValueInPX) => {
@@ -19,9 +18,10 @@ class Video {
             if (video.getBoundingClientRect().bottom < document.documentElement.clientHeight && video.getBoundingClientRect().bottom > 0) {
                 let frameNumber;
                 if (video == video1) {
-                    frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().bottom) / 60;
+                    frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().bottom) / 6;
                 } else if (video == video5) {
-                    frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().bottom) / 40;
+                    frameNumber = ((document.documentElement.clientHeight / 2) - video.getBoundingClientRect().top) / 1.4;
+                    // console.log(frameNumber);/
                 } else {
                     frameNumber = (document.documentElement.clientHeight - video.getBoundingClientRect().bottom) / 10;
                 }
@@ -47,14 +47,18 @@ let frameNumber = 0, // start video at frame 0
 // fourth_scroll_height = document.querySelector('#card-4').scrollHeight,
 // setHeight = document.querySelector('.set-height'),
 // window_height = document.documentElement.clientHeight
+// video1.addEventListener('click', () => {
+//     // video1.currentTime = video1.duration;
+//     console.log('in')
+// })
+// }
+// window.onload = () => {
+// );
+//     console.log('ink');
 
-window.onload = () => {
-    video1.addEventListener('loadeddata', videoDuration);
-}
+// }
 
-function videoDuration() {
-    video1.currentTime = video1.duration;
-}
+
 let h = 1;
 let time = 0
 
